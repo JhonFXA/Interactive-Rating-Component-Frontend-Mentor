@@ -1,96 +1,33 @@
-function submit(){
-    var rateCard = document.querySelector('div#rate-card');
-    var thanksCard = document.querySelector('div#thanks-card');
-    var rateResult = document.getElementById('rate');
+var rateCard = document.getElementById('rate-card');
+var thanksCard = document.getElementById('thanks-card');
+var rateResult = document.getElementById('rate');
+var ratingButtons = document.querySelectorAll('.rating-btn');
+var submit = document.getElementById('submit');
 
-    
-    if (ratingButtons[0].classList.contains('selected')) {
-        rateResult.innerText = '1';
-    } else if (ratingButtons[1].classList.contains('selected')) {
-        rateResult.innerText = '2';
-    } else if (ratingButtons[2].classList.contains('selected')) {
-        rateResult.innerText = '3';
-    } else if (ratingButtons[3].classList.contains('selected')) {
-        rateResult.innerText = '4';
-    } else if (ratingButtons[4].classList.contains('selected')) {
-        rateResult.innerText = '5';
+//Cria uma evento de click no botão de submit, a cada clique ele checará se o cliente escolheu uma das opções de avaliação
+submit.addEventListener('click', () => {
+    if (rateResult.innerHTML == '0') {
+        alert('Please choose from one to five!');
+    } else {
+        rateCard.style.display = 'none';
+        thanksCard.style.display = 'block';
     }
-
-
-    
-    rateCard.classList.remove('active');
-    thanksCard.classList.add('active');
-    
-    
-}
-
-
-var ratingButtons = document.getElementsByClassName('rating-btn');
-
-
-ratingButtons[0].addEventListener('click', function(){
-    ratingButtons[0].classList.add('selected');
-    ratingButtons[1].classList.remove('selected');
-    ratingButtons[2].classList.remove('selected');
-    ratingButtons[3].classList.remove('selected');
-    ratingButtons[4].classList.remove('selected');
-
-    ratingButtons[0].setAttribute('style', 'background-color: var(--orange); color: var(--white);');
-    ratingButtons[1].removeAttribute('style', 'background-color: var(--orange); color: var(--white);');
-    ratingButtons[2].removeAttribute('style', 'background-color: var(--orange); color: var(--white);');
-    ratingButtons[3].removeAttribute('style', 'background-color: var(--orange); color: var(--white);');
-    ratingButtons[4].removeAttribute('style', 'background-color: var(--orange); color: var(--white);');
 });
 
-ratingButtons[1].addEventListener('click', function(){
-    ratingButtons[0].classList.remove('selected');
-    ratingButtons[1].classList.add('selected');
-    ratingButtons[2].classList.remove('selected');
-    ratingButtons[3].classList.remove('selected');
-    ratingButtons[4].classList.remove('selected');
+//Executará um evento a cada botão que for clicado
+ratingButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        //Mantém as cores dos botões de avaliação as mesmas...
+        ratingButtons.forEach(button => button.style.background = 'var(--medium-blue)');
+        ratingButtons.forEach(button => button.style.color = 'var(--light-grey)')
 
-    ratingButtons[0].removeAttribute('style', 'background-color: var(--orange); color: var(--white);');
-    ratingButtons[1].setAttribute('style', 'background-color: var(--orange); color: var(--white);');
-    ratingButtons[2].removeAttribute('style', 'background-color: var(--orange); color: var(--white);');
-    ratingButtons[3].removeAttribute('style', 'background-color: var(--orange); color: var(--white);');
-    ratingButtons[4].removeAttribute('style', 'background-color: var(--orange); color: var(--white);');
-});
-ratingButtons[2].addEventListener('click', function(){
-    ratingButtons[0].classList.remove('selected');
-    ratingButtons[1].classList.remove('selected');
-    ratingButtons[2].classList.add('selected');
-    ratingButtons[3].classList.remove('selected');
-    ratingButtons[4].classList.remove('selected');
+        //Enquanto muda apenas as do botão que foi clicado
+        button.style.background = 'var(--orange)';
+        button.style.color = 'var(--white)';
 
-    ratingButtons[0].removeAttribute('style', 'background-color: var(--orange); color: var(--white);');
-    ratingButtons[1].removeAttribute('style', 'background-color: var(--orange); color: var(--white);');
-    ratingButtons[2].setAttribute('style', 'background-color: var(--orange); color: var(--white);');
-    ratingButtons[3].removeAttribute('style', 'background-color: var(--orange); color: var(--white);');
-    ratingButtons[4].removeAttribute('style', 'background-color: var(--orange); color: var(--white);');
+        //Escreve no HTML o valor do botão escolhido
+        rateResult.innerHTML = button.value;
+    })
 });
-ratingButtons[3].addEventListener('click', function(){
-    ratingButtons[0].classList.remove('selected');
-    ratingButtons[1].classList.remove('selected');
-    ratingButtons[2].classList.remove('selected');
-    ratingButtons[3].classList.add('selected');
-    ratingButtons[4].classList.remove('selected');
 
-    ratingButtons[0].removeAttribute('style', 'background-color: var(--orange); color: var(--white);');
-    ratingButtons[1].removeAttribute('style', 'background-color: var(--orange); color: var(--white);');
-    ratingButtons[2].removeAttribute('style', 'background-color: var(--orange); color: var(--white);');
-    ratingButtons[3].setAttribute('style', 'background-color: var(--orange); color: var(--white);');
-    ratingButtons[4].removeAttribute('style', 'background-color: var(--orange); color: var(--white);');
-});
-ratingButtons[4].addEventListener('click', function(){
-    ratingButtons[0].classList.remove('selected');
-    ratingButtons[1].classList.remove('selected');
-    ratingButtons[2].classList.remove('selected');
-    ratingButtons[3].classList.remove('selected');
-    ratingButtons[4].classList.add('selected');
 
-    ratingButtons[0].removeAttribute('style', 'background-color: var(--orange); color: var(--white);');
-    ratingButtons[1].removeAttribute('style', 'background-color: var(--orange); color: var(--white);');
-    ratingButtons[2].removeAttribute('style', 'background-color: var(--orange); color: var(--white);');
-    ratingButtons[3].removeAttribute('style', 'background-color: var(--orange); color: var(--white);');
-    ratingButtons[4].setAttribute('style', 'background-color: var(--orange); color: var(--white);');
-});
