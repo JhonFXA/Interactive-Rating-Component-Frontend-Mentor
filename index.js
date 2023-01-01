@@ -17,11 +17,9 @@ submit.addEventListener('click', () => {
 //Executará um evento a cada botão que for clicado
 ratingButtons.forEach(button => {
     button.addEventListener('click', () => {
-        //Mantém as cores dos botões de avaliação as mesmas...
+        //Mantém as cores dos botões de avaliação as mesmas enquanto muda apenas as do botão que foi clicado
         ratingButtons.forEach(button => button.style.background = 'var(--medium-blue)');
-        ratingButtons.forEach(button => button.style.color = 'var(--light-grey)')
-
-        //Enquanto muda apenas as do botão que foi clicado
+        ratingButtons.forEach(button => button.style.color = 'var(--light-grey)');
         button.style.background = 'var(--orange)';
         button.style.color = 'var(--white)';
 
